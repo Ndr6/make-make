@@ -1,5 +1,6 @@
 # make-make
-A repo initializer, mainly for Epitech.
+A repo initializer, mainly for Epitech, but customizable.
+It comes with handy Makefiles for projects and libraries.
 
 ## By using the "make-make" command:
 1) It copies the Makefile in ~/bin/maek/ to the current directory
