@@ -7,13 +7,13 @@
 
 echo -e "\e[1m\e[44m Make-Make : a repo initializer, by Ndr\e[0m"
 sleep 2s
-cp ~/bin/maek/Makefile ./
+cp ~/bin/make-make_files/Makefile ./
 mkdir lib
 mkdir lib/my
 mkdir include
 mkdir src
 mkdir tests
-cp ~/bin/maek/make-makelib/* ./lib/my/
+cp ~/bin/make-make_files/make-makelib/* ./lib/my/
 make -C ./lib/my
 make clean -C ./lib/my
 echo -e "\e[1m\e[101m Pensez à modifier le Makefile pour ajouter vos fichiers sources et le nom du binaire !\e[0m"
