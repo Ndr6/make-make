@@ -15,7 +15,7 @@ LIB_DIR=	$(realpath ./lib/my)
 INC_DIR=	$(realpath ./include)
 
 #Fichiers sources
-SRC=		$(SRC_DIR)/**
+SRC=		$(SRC_DIR)/ #[AJOUTEZ LES FICHIERS SOURCES]
 
 #Libs à inclure
 LIB=		my
@@ -24,7 +24,7 @@ LIB=		my
 OBJ=		$(SRC:.c=.o)
 
 #Nom du projet
-NAME=		**
+NAME=		#[NOM DU PROJET]
 
 #Arguments gcc
 GCC_ARG=	-L$(LIB_DIR) -l$(LIB) -I$(INC_DIR)
@@ -48,10 +48,3 @@ fclean:		clean
 		rm -f $(NAME)
 
 re:		fclean all
-
-arbo:
-		mkdir lib
-		mkdir lib/my
-		mkdir include
-		mkdir src
-		mkdir tests

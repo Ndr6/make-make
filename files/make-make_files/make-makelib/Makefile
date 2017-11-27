@@ -22,7 +22,7 @@ OBJ=		$(SRC:.c=.o) $(SRC_UT:.c=.o)
 
 #Nom du projet
 NAME=		libmy.a
-H_NAME=		my.h
+H_NAME=	my.h
 
 #Règles
 all:		$(NAME)
@@ -36,7 +36,7 @@ $(NAME):
 clean:
 		rm -f $(OBJ)
 
-fclean:		clean
+fclean:	clean
 		rm -f $(NAME)
 
 re:		fclean all

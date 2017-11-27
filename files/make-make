@@ -6,9 +6,13 @@
 ##
 
 echo -e "\e[1m\e[44m Make-Make : a repo initializer, by Ndr\e[0m"
-sleep 1s
+sleep 2s
 cp ~/bin/maek/Makefile ./
-make arbo
+mkdir lib
+mkdir lib/my
+mkdir include
+mkdir src
+mkdir tests
 cp ~/bin/maek/make-makelib/* ./lib/my/
 make -C ./lib/my
 make clean -C ./lib/my
