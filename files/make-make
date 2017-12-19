@@ -1,19 +1,55 @@
 #!/bin/bash
 
 ##
-## Make-Make
+## Make-Make v3
 ## By Ndr
 ##
 
-echo -e "\e[1m\e[44m Make-Make : a repo initializer, by Ndr\e[0m"
-sleep 2s
-cp ~/bin/make-make_files/Makefile ./
+## Make-make, a repo initializer
+##    Copyright (C) {2017}  {Ender}
+
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+#Launch prompt
+echo -e "\033[1m\033[34mMake-make v3: A repo initializer| by Ndr\033[0m\n"
+sleep 1s
+
+#Checking arguments
+if test "$#" -ne 1; then
+    echo -e "\t\033[1mUsage: \033[36mmake-make \033[32m<Project/Binary name>\033[0m"
+    echo -e "\t/!\ Please note that make-make doesn't support spaces in project names."
+    exit
+fi
+
+#Make arborescence
 mkdir lib
 mkdir lib/my
 mkdir include
 mkdir src
 mkdir tests
-cp ~/bin/make-make_files/make-makelib/* ./lib/my/
-make -C ./lib/my
-make clean -C ./lib/my
-echo -e "\e[1m\e[101m Pensez à modifier le Makefile pour ajouter vos fichiers sources et le nom du binaire !\e[0m"
+
+#Copying Makefiles & lib files
+cp ~/bin/make-make_files/Makefile ./
+cp ~/bin/make-make_files/make-makelib/Makefile lib/my/
+cp ~/bin/make-make_files/make-makelib/*.c lib/my/
+cp ~/bin/make-make_files/make-makelib/my.h lib/my/
+
+#Auto-creating a main.c file (yes, I'm lazy)
+touch src/main.c
+
+#Modifying main Makefile
+sed -i 's/PROJECTNAME/'$1'/' Makefile
+
+#End message
+echo -e "\033[1m\033[36mDone. Have a nice day.\033[0m"

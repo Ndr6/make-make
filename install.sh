@@ -13,6 +13,6 @@ cp ~/.bashrc ./bkpbashrc
 cp ~/.zshrc ./bkpzshrc
 echo "PATH=\"\$PATH:\$HOME/bin\"" >> ~/.bashrc
 echo "PATH=\"\$PATH:\$HOME/bin\"" >> ~/.zshrc
-echo "\033[1m\033[101m Redémarrez tous vos terminaux pour utiliser make-make\033[0m\\n"
-echo "\033[1m\033[101m Pensez aussi à mettre vos libs dans ~/bin/make-make_files/make-makelib\033[0m"
+echo "\033[1m\033[101m Redémarrez votre terminal pour utiliser make-make\033[0m\\n"
+echo "\033[1m\033[101m Pensez aussi à mettre votre lib dans ~/bin/make-make_files/make-makelib\033[0m"
 sleep 5

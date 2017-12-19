@@ -1,14 +1,13 @@
-# make-make
+# make-make v3
 A repo initializer, mainly for Epitech, but customizable.
 
 It comes with handy Makefiles for projects and libraries.
 
-## By using the "make-make" command:
-1) It copies the Makefile in ~/bin/make-make_files/ to the current directory
-2) It launches "make arbo" to create a standard repository arborescence
-3) It copies the content of ~/bin/make-make_files/make-makelib in ./lib/my
-4) It compiles a library with all the .c files in ./lib/my then clears the .o files created in the process
-5) Now you just have to create your project .c files in ./src and use make to compile
+## What the "make-make" script does:
+1) Make a standard programming project arborescence
+2) Put useful Makefiles in the repo's root and in lib/my/
+3) Create an empty main.c file in src/
+4) Set the binary output name for the passed argument
 
 ## Installation :
 1) Download the repo and run install.sh (works for bash and zsh users)
