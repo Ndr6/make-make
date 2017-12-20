@@ -22,7 +22,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 REPO='.'
-MKMK='~/bin'
+#MKMK='~/bin'
 CHOICE=-1
 
 yes_no () {
@@ -74,9 +74,9 @@ create_arbo () {
 
 copy_files () {
     #Copying Makefiles & lib files
-    cp $MKMK/make-make_files/Makefile $REPO
-    cp $MKMK/make-make_files/main.c $REPO/src
-    cp $MKMK/make-make_files/make-makelib/Makefile $REPO/lib/my/
+    cp ~/bin/make-make_files/Makefile $REPO
+    cp ~/bin/make-make_files/main.c $REPO/src
+    cp ~/bin/make-make_files/make-makelib/Makefile $REPO/lib/my/
     cp ~/bin/make-make_files/make-makelib/*.c $REPO/lib/my/
     cp ~/bin/make-make_files/make-makelib/my.h $REPO/lib/my/
 }
