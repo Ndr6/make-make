@@ -29,9 +29,10 @@ CHOICE=-1
 yes_no () {
     local CHOSEN='0'
     local ANSWER
-    read -p "$1 [Y/N]" -n1 ANSWER
     while [ "$CHOSEN" = '0' ]
     do
+	read -p "$1 [Y/N]" -n1 ANSWER
+	echo ''
 	case $ANSWER in
 	    y | Y )
 		CHOICE=1
@@ -50,12 +51,11 @@ check_args () {
     if test "$#" -ne 1; then
 	echo 'You have not specified a valid binary/project name.'
 	yes_no "Do you want it to be a.out ?"
-	echo -e ''
 	if [ $CHOICE = 1 ];
 	then
 	    BIN_NAME='a.out'
 	else
-	    echo -e '\nAborting.'
+	    echo -e 'Aborting.'
 	    exit
 	fi
     else
@@ -85,9 +85,6 @@ change_files () {
     #Modifying main Makefile
     sed -i "s/PROJECTNAME/$BIN_NAME/" $REPO/Makefile
 }
-
-
-
 
 echo -e "\033[1m\033[34mMake-make v4: A repo initializer| by Ndr\033[0m\n"
 sleep 1s
