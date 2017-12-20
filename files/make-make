@@ -75,6 +75,7 @@ create_arbo () {
 copy_files () {
     #Copying Makefiles & lib files
     cp $MKMK/make-make_files/Makefile $REPO
+    cp $MKMK/make-make_files/main.c $REPO/src
     cp $MKMK/make-make_files/make-makelib/Makefile $REPO/lib/my/
     cp ~/bin/make-make_files/make-makelib/*.c $REPO/lib/my/
     cp ~/bin/make-make_files/make-makelib/my.h $REPO/lib/my/
@@ -96,12 +97,20 @@ auto_commit () {
     fi
 }
 
+auto_open_main () {
+    yes_no "Do you want to open main.c now ? (with $EDITOR)"
+    if [ $CHOICE = 1 ];
+    then
+	$EDITOR $REPO/src/main.c &
+    fi
+}
+
 echo -e "\033[1m\033[34mMake-make v4: A repo initializer| by Ndr\033[0m\n"
 sleep 1s
 check_args "$@"
 create_arbo
 copy_files
 change_files
-touch $REPO/src/main.c
 auto_commit
+auto_open_main
 echo -e "\033[1m\033[36mDone. Have a nice day.\033[0m"
