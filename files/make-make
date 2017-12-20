@@ -21,7 +21,6 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-mkdir test
 REPO='./test'
 MKMK='.'
 CHOICE=-1
@@ -86,6 +85,17 @@ change_files () {
     sed -i "s/PROJECTNAME/$BIN_NAME/" $REPO/Makefile
 }
 
+auto_commit () {
+    yes_no "Do you want to do an initial commit ? (Only works if folder is a git repo)"
+    if [ $CHOICE = 1 ];
+    then
+	cd $REPO
+	git add --all
+	git commit -m "Initial commit"
+	git push origin master
+    fi
+}
+
 echo -e "\033[1m\033[34mMake-make v4: A repo initializer| by Ndr\033[0m\n"
 sleep 1s
 check_args "$@"
@@ -93,4 +103,5 @@ create_arbo
 copy_files
 change_files
 touch $REPO/src/main.c
+auto_commit
 echo -e "\033[1m\033[36mDone. Have a nice day.\033[0m"
