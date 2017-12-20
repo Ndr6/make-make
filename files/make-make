@@ -21,35 +21,79 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#Launch prompt
-echo -e "\033[1m\033[34mMake-make v3: A repo initializer| by Ndr\033[0m\n"
+mkdir test
+REPO='./test'
+MKMK='.'
+CHOICE=-1
+
+yes_no () {
+    local CHOSEN='0'
+    local ANSWER
+    read -p "$1 [Y/N]" -n1 ANSWER
+    while [ "$CHOSEN" = '0' ]
+    do
+	case $ANSWER in
+	    y | Y )
+		CHOICE=1
+		CHOSEN='1';;
+	    n | N )
+		CHOICE=0
+		CHOSEN='1';;
+	    *)
+		echo 'Invalid answer, try again.';;
+	esac
+    done
+}
+
+check_args () {
+    #Checking arguments
+    if test "$#" -ne 1; then
+	echo 'You have not specified a valid binary/project name.'
+	yes_no "Do you want it to be a.out ?"
+	echo -e ''
+	if [ $CHOICE = 1 ];
+	then
+	    BIN_NAME='a.out'
+	else
+	    echo -e '\nAborting.'
+	    exit
+	fi
+    else
+	BIN_NAME=$1
+    fi
+}
+
+create_arbo () {
+    #Make arborescence
+    mkdir $REPO/lib
+    mkdir $REPO/lib/my
+    mkdir $REPO/include
+    mkdir $REPO/src
+    mkdir $REPO/tests
+    mkdir $REPO/bonus
+}
+
+copy_files () {
+    #Copying Makefiles & lib files
+    cp $MKMK/make-make_files/Makefile $REPO
+    cp $MKMK/make-make_files/make-makelib/Makefile $REPO/lib/my/
+    cp ~/bin/make-make_files/make-makelib/*.c $REPO/lib/my/
+    cp ~/bin/make-make_files/make-makelib/my.h $REPO/lib/my/
+}
+
+change_files () {
+    #Modifying main Makefile
+    sed -i "s/PROJECTNAME/$BIN_NAME/" $REPO/Makefile
+}
+
+
+
+
+echo -e "\033[1m\033[34mMake-make v4: A repo initializer| by Ndr\033[0m\n"
 sleep 1s
-
-#Checking arguments
-if test "$#" -ne 1; then
-    echo -e "\t\033[1mUsage: \033[36mmake-make \033[32m<Project/Binary name>\033[0m"
-    echo -e "\t/!\ Please note that make-make doesn't support spaces in project names."
-    exit
-fi
-
-#Make arborescence
-mkdir lib
-mkdir lib/my
-mkdir include
-mkdir src
-mkdir tests
-
-#Copying Makefiles & lib files
-cp ~/bin/make-make_files/Makefile ./
-cp ~/bin/make-make_files/make-makelib/Makefile lib/my/
-cp ~/bin/make-make_files/make-makelib/*.c lib/my/
-cp ~/bin/make-make_files/make-makelib/my.h lib/my/
-
-#Auto-creating a main.c file (yes, I'm lazy)
-touch src/main.c
-
-#Modifying main Makefile
-sed -i 's/PROJECTNAME/'$1'/' Makefile
-
-#End message
+check_args "$@"
+create_arbo
+copy_files
+change_files
+touch $REPO/src/main.c
 echo -e "\033[1m\033[36mDone. Have a nice day.\033[0m"
