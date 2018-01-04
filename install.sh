@@ -41,9 +41,9 @@ cp -r ./files/* ~/bin
 cp ~/.bashrc ./bkpbashrc
 cp ~/.zshrc ./bkpzshrc
 echo "PATH=\"\$PATH:\$HOME/bin\"" >> ~/.bashrc
-echo "EDITOR=$ED" >> ~/.bashrc
 echo "PATH=\"\$PATH:\$HOME/bin\"" >> ~/.zshrc
-echo "EDITOR=$ED" >> ~/.zshrc
+echo "export MKEDITOR=$ED" >> ~/.bashrc
+echo "export MKEDITOR=$ED" >> ~/.zshrc
 echo -e "\033[1m\033[101m Redémarrez votre terminal pour utiliser make-make\033[0m\\n"
 echo -e "\033[1m\033[101m Pensez aussi à mettre votre lib dans ~/bin/make-make_files/make-makelib\033[0m"
 sleep 5

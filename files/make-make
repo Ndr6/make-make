@@ -98,10 +98,10 @@ auto_commit () {
 }
 
 auto_open_main () {
-    yes_no "Do you want to open main.c now ? (with $EDITOR)"
+    yes_no "Do you want to open main.c now ? (with $MKEDITOR)"
     if [ $CHOICE = 1 ];
     then
-	$EDITOR $REPO/src/main.c &
+	$MKEDITOR $REPO/src/main.c &
     fi
 }
 

@@ -52,8 +52,8 @@ mkdir ~/bin
 cp -r ./files/* ~/bin
 cp ~/.bashrc ./bkpbashrc
 cp ~/.zshrc ./bkpzshrc
-echo "EDITOR=$ED" >> ~/.bashrc
-echo "EDITOR=$ED" >> ~/.zshrc
+echo "export MKEDITOR=$ED" >> ~/.bashrc
+echo "export MKEDITOR=$ED" >> ~/.zshrc
 
 #Transfer previous install
 echo -e "\033[1m\033[101mRécupération de la lib\033[0m\\n"
