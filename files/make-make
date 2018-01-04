@@ -22,7 +22,6 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 REPO='.'
-#MKMK='~/bin'
 CHOICE=-1
 
 yes_no () {
