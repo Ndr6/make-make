@@ -44,6 +44,13 @@ yes_no () {
     done
 }
 
+show_help () {
+    #Prompting usage
+    echo -e "\033[1mUsage: make-make [binary name] [repository name]\033[0m\n"
+    echo -e "\033[1m\tbinary name - The name of the make output binary (optional)\033[0m\n"
+    echo -e "\033[1m\trepository name - The name of the repo to be created (optional & needs binary name)\033[0m\n"
+}
+
 check_args () {
     #Checking arguments
     if test "$#" -ne 1; then
@@ -57,6 +64,10 @@ check_args () {
 	    exit
 	fi
     else
+	if test "$1" -e "-h"; then
+	    show_help
+	    exit
+	fi
 	BIN_NAME=$1
     fi
 }
@@ -75,6 +86,7 @@ copy_files () {
     #Copying Makefiles & lib files
     cp ~/bin/make-make_files/Makefile $REPO
     cp ~/bin/make-make_files/main.c $REPO/src
+    cp ~/bin/make-make_files/units.c $REPO/tests
     cp ~/bin/make-make_files/make-makelib/Makefile $REPO/lib/my/
     cp ~/bin/make-make_files/make-makelib/*.c $REPO/lib/my/
     cp ~/bin/make-make_files/make-makelib/my.h $REPO/lib/my/
@@ -105,6 +117,7 @@ auto_open_main () {
 }
 
 echo -e "\033[1m\033[34mMake-make v3.5: A repo initializer| by Ndr\033[0m\n"
+echo -e "\033[1m\033For help, see -h\033[0m\n"
 sleep 1s
 check_args "$@"
 create_arbo

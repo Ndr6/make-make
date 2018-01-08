@@ -15,6 +15,8 @@ NAME=		PROJECTNAME
 #Répertoire des sources (.c)
 SRC_DIR=	$(realpath ./src)
 
+UT_DIR=	$(realpath ./tests)
+
 #Répertoire de la lib (.a)
 LIB_DIR=	$(realpath ./lib/my)
 
@@ -24,6 +26,8 @@ INC_DIR=	$(realpath ./include)
 #Fichiers sources à compiler
 #(Par défaut, compile tous les .c du dossier src)
 SRC=		$(SRC_DIR)/*.c
+
+UT_SRC=	$(UT_DIR)/*.c
 
 #Lib à inclure
 LIB=		my
@@ -35,6 +39,7 @@ OBJ=		$(SRC:.c=.o)
 #Ex: -lm pour math.h, -lncurses pour ncurses, ...
 GCC_ARG=	-L$(LIB_DIR) -l$(LIB) -I$(INC_DIR)
 GCC_ARG_DEBUG=	-L$(LIB_DIR) -l$(LIB) -I$(INC_DIR) -g
+GCC_ARG_UT=	-L$(LIB_DIR) -l$(LIB) -I$(INC_DIR) -g -lcriterion
 
 
 ############
@@ -53,6 +58,14 @@ $(NAME):
 debug:
 		@echo "\033[1m\033[92mCompiling $(NAME) in debug mode...\033[0m"
 		gcc -o $(NAME) $(SRC) $(GCC_ARG_DEBUG)
+
+tests:		fclean
+		make -C $(LIB_DIR)
+		@echo "\033[1m\033[92mCompiling $(NAME) in testing mode...\033[0m"
+		gcc -o $(NAME) $(filter-out $(SRC_DIR)/main.c, $(wildcard $(SRC_DIR)/*.c)) $(UT_SRC) $(GCC_ARG_UT)
+		@echo "\033[1m\033[92mLaunching $(NAME) tests...\033[0m"
+		@./$(NAME) --list
+		@./$(NAME) --verbose=1
 
 #Efface les .o dans lib/my
 clean:
