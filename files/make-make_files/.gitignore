@@ -1,0 +1,4 @@
+.vscode
+*.o
+libmy.a
+PROJECTNAME
