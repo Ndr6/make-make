@@ -82,6 +82,7 @@ copy_files () {
     #Copying Makefiles & lib files
     cp ~/bin/make-make_files/Makefile $REPO
     cp ~/bin/make-make_files/.gitignore $REPO
+    cp ~/bin/make-make_files/.clang-format $REPO
     cp ~/bin/make-make_files/main.c $REPO/src
     cp ~/bin/make-make_files/units.c $REPO/tests
     cp ~/bin/make-make_files/make-makelib/Makefile $REPO/lib/my/
